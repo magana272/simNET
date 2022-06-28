@@ -1,0 +1,50 @@
+Function:
+
+simNN_init(input, output, learing_rate) -> simNN
+reLUforward:
+
+reLUbackward:
+
+softMaxForward:
+
+softMaxBackWard:
+
+crossEntropyLoss:
+
+
+Structs: 
+    input_node:
+     output_weight
+     conncted_node_
+    hidden_node:
+        input_connection[]
+        struct* activation_function
+        output_connection
+        cache: storing value of Z
+    ruLU{
+        function* forward
+        function* backward
+    }
+    softMax{
+        function* forward
+        backward* backward
+    }
+    simNN:
+        input 
+
+        output
+
+        hiddenlayer_numbers
+
+        function forward*: This method takes as input the output X from the previous layer (or input data). This method
+        computes the function ϕ(·) from above, combining the input with the weights W and bias b that are
+        stored as attributes. It returns an output out and saves the intermediate value Z to the cache attribute,
+        as it is needed to compute gradients in the backward pass.
+        function backward* 
+
+        backward: 
+        """Backward pass for fully connected layer.
+        Compute the gradients of the loss with respect to:
+        1. the weights of this layer (mutate the `gradients` dictionary)
+        2. the bias of this layer (mutate the `gradients` dictionary)
+        3. the input of this layer (return this)
