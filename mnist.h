@@ -20,6 +20,7 @@
 #define MAX_BRIGHTNESS 255
 #define MAX_FILENAME 256
 #define MAX_NUM_OF_IMAGES 1
+#define KFOLD 1
 
 unsigned char image[MAX_NUM_OF_IMAGES][MAX_IMAGESIZE][MAX_IMAGESIZE];
 int width[MAX_NUM_OF_IMAGES], height[MAX_NUM_OF_IMAGES];
@@ -31,11 +32,18 @@ unsigned char train_image_char[NUM_TRAIN][SIZE];
 unsigned char test_image_char[NUM_TEST][SIZE];
 unsigned char train_label_char[NUM_TRAIN][1];
 unsigned char test_label_char[NUM_TEST][1];
-
 double train_image[NUM_TRAIN][SIZE];
 double test_image[NUM_TEST][SIZE];
 int  train_label[NUM_TRAIN];
 int test_label[NUM_TEST];
+
+int shuffled_image_index[NUM_TRAIN];
+int validation_test_SET[KFOLD][NUM_TRAIN/KFOLD];
+int validation_train_SET[KFOLD][NUM_TRAIN - NUM_TRAIN/KFOLD];
+
+
+void shuffle_array();
+
 
 
 void FlipLong(unsigned char * ptr)
@@ -113,6 +121,8 @@ void load_mnist()
     
     read_mnist_char(TEST_LABEL, NUM_TEST, LEN_INFO_LABEL, 1, test_label_char, info_label);
     label_char2int(NUM_TEST, test_label_char, test_label);
+    shuffle_array();
+
 }
 
 
@@ -189,3 +199,29 @@ void save_mnist_pgm(double data_image[][SIZE], int index)
 
     save_image(n, "");
 }
+
+void randomize_Array(int *random_index, int size){
+    int rand_place;
+    for (rand_place  = 0; rand_place  < size - 1; rand_place ++) {
+	  size_t j = rand_place + rand() / (RAND_MAX / (size - rand_place) + 1);
+	  int t = random_index[j];
+	  random_index[j] = random_index[rand_place];
+	  random_index[rand_place] = t;
+    }
+
+}
+
+void shuffle_array(){
+    int length;
+    int random_index[SIZE];
+    for(length =0; length < SIZE ; length++){
+        random_index[length] = length;
+    }
+    randomize_Array((int *) &random_index, SIZE);
+    for(length =0; length < SIZE ; length++){
+        shuffled_image_index[length] = random_index[length];
+    }
+
+}
+
+
