@@ -1,8 +1,10 @@
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+
 
 // set appropriate path for data
 #define TRAIN_IMAGE "./data/train-images.idx3-ubyte"

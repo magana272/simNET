@@ -1,20 +1,10 @@
-// class Linear(Activation):
-// def __init__(self):
-// super().__init__()
-// def forward(self, Z: np.ndarray) -> np.ndarray:
-// """Forward pass for f(z) = z."""
-// return Z
-// def backward(self, Z: np.ndarray, dY: np.ndarray) -> np.ndarray:
-// """Backward pfor f(z) = z."""
-// return dY
+#pragma once
 #include <math.h>
+#include "mymath.h"
 
-float ReLuAct(float input){
-   return (((input)>(0))?(input):(0));
-}
+mat* ReLuAct(mat* input, int row, int col);
 
-float dReLuAct(float input){
-    /// not really worring about undefined
-   return (((input)>=(0))?(1):(0));
-}
+// mat* LogsiticAct(mat* input, int row, int col){
+// }
 
+mat* SoftMaxMAct(mat* input, int row, int col);

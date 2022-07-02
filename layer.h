@@ -1,3 +1,4 @@
+#pragma once
 typedef struct layer_t
 {
 	int hidden_unit;
