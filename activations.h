@@ -7,8 +7,14 @@
 // def backward(self, Z: np.ndarray, dY: np.ndarray) -> np.ndarray:
 // """Backward pfor f(z) = z."""
 // return dY
+#include <math.h>
 
-//int ReLuAct
+float ReLuAct(float input){
+   return (((input)>(0))?(input):(0));
+}
 
+float dReLuAct(float input){
+    /// not really worring about undefined
+   return (((input)>=(0))?(1):(0));
+}
 
-/// doubleRelu

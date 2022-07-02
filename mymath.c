@@ -26,6 +26,8 @@ mat* arrayToMatrix(float* arr, int row, int col){
             new_matrix->matrix_t[i][j] = *((arr+i*col) + j);
             }
     }
+    new_matrix->row = row;
+    new_matrix->col = col;
     return new_matrix;
 }
 
@@ -38,15 +40,17 @@ mat* mat_mul(mat *A, mat *B){
     else{
         int i;
         int j;
+        int k;
         mat* new_mat = mycreateEmptyMatrix(A->row, B->col);
         int col ; 
         for(i=0 ; i< A->row; i++){
-            int entry = 0;
-            for(j = 0; j< A->col; j++){
-                entry += (A->matrix_t[i][j]) * (B->matrix_t[j][i]);
+            for(j = 0; j< B->col; j++){
+                float entry = 0.0;
+                for(k=0 ; k<B->col; k++ ){
+                    entry += (A->matrix_t[i][k]) * (B->matrix_t[k][j]);
+                    new_mat->matrix_t[i][j] = entry;
                 }
-            new_mat->matrix_t[i][col] = entry;
-            col++;
+                }
         }
         return new_mat;
     }
@@ -57,6 +61,9 @@ mat* mat_add(mat *A, mat *B){
     int i;
     int j;
     if(A->col != B->col && A->row != B->row){
+        printf("\ncol:\n");
+        printf("%d", A->col);
+        printf("%d",B->col);
         printf("Mismatching dim");
         exit(1);
     }
@@ -79,7 +86,7 @@ mat* mat_sub(mat *A, mat *B){
         printf("Mismatching dim");
         exit(1);}
     else{
-        mat* new_mat = mycreateEmptyMatrix(A->col, A->row);
+        mat* new_mat = mycreateEmptyMatrix(A->col, A->row); 
         for(i=0; i< A->row ; i++){
             for (j= 0; j<  A->col; j++){   
                 new_mat->matrix_t[i][j] =  A->matrix_t[i][j] - B->matrix_t[i][j];
@@ -111,7 +118,4 @@ void free_mat(mat* A){
     free(m);
     free(A);
     }
-// mat mat_inverse(mat A){
-//     // TO-DO
-
-// }
+////power 

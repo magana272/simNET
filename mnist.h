@@ -223,5 +223,11 @@ void shuffle_array(){
     }
 
 }
+void k_fold(int number){
+    int i;
+    for(i=0;i<number;i++){
+        printf("Need_to_fix_k_fold \n");
+    }
+}
 
 
