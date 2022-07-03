@@ -39,3 +39,27 @@ mat* SoftMaxMAct(mat* input, int row, int col){
     return softmaxed;
 
 }
+mat* dtSoftMaxMAct(mat* input, int row, int col){
+    //N number of rows and for labels the  col 10;
+    mat* softmaxed =  mycreateEmptyMatrix(row, col);
+    int i;
+    int j;
+    float** matrix = input->matrix_t;
+    float** out_putMatrix =  softmaxed->matrix_t;
+    float* summed = (float*)calloc(sizeof(float), row);
+    for(i=0 ; i<row; i++){
+        for(j=0 ;j<col; j++){
+            out_putMatrix[i][j] = powf(EulerNumber,matrix[i][j]);
+            summed[i]+=out_putMatrix[i][j];
+        }
+    }
+    for(i=0 ; i<row; i++){
+        for(j=0 ;j<col; j++){
+            out_putMatrix[i][j] = powf(EulerNumber,matrix[i][j]);
+            out_putMatrix[i][j] = out_putMatrix[i][j]/summed[i];
+        }
+    }
+    free(summed);
+    return softmaxed;
+
+}

@@ -115,4 +115,5 @@ void free_mat(mat* A){
     free(m);
     free(A);
     }
-////power 
+
+

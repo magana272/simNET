@@ -6,10 +6,12 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "mymath.h"
+#include "math/mymath.h"
 #include "mnist.h"
-#include "simNN.h"
-#include "activations.h"
+#include "NN_structure/simNN.h"
+#include "NN_structure/node.h"
+#include "NN_structure/layer.h"
+#include "opt_cost_fitness/activations.h"
 
 
 #define KFOLD 1
@@ -33,7 +35,7 @@ int main(int argc, const char * argv[]) {
     // mat* add_arr  = mat_add(new_arr, new_arr);
     // printMat(add_arr);
     // // TESTING Mat Free
-    // free_mat(new_mat);
+    free_mat(new_mat);
     // free_mat(add_arr);
     // free_mat(new_arr);
 
@@ -78,8 +80,9 @@ k_fold(KFOLD);
 
 
 
-float array[][3] = {{1.f,2.f,3.f},{5.f,6.f,7.f}};
-mat* new_arr = arrayToMatrix((float*)&array,sizeof(array)/sizeof(array[0]),3);
+// float array[][3] = {{1.f,2.f,3.f},{5.f,6.f,7.f}};
+float array[][1] = {{1.f}};
+mat* new_arr = arrayToMatrix((float*)&array,sizeof(array)/sizeof(array[0]),1);
 // mat* relu_arr  = ReLuAct(new_arr, new_arr->row,new_arr->col);
 // printMat(new_arr);
 // printf("\n");
@@ -88,6 +91,9 @@ printMat(new_arr);
 printf("\n");
 mat* softmax = SoftMaxMAct(new_arr,new_arr->row,new_arr->col);
 printMat(softmax);
+
+free_mat(new_arr);
+free_mat(softmax);
 
 
 
@@ -101,6 +107,9 @@ struct simNN validing_net[KFOLD];
 float LEARNING_RATE[10] = {.0075,.01, .02, .03, .05,.075,.1 , .2, .5, .6};
 double ERROR[KFOLD];
 int run;
+
+simNN * mytestNN = create_nn(784, 8, 10);
+
 for(run =0 ; run < KFOLD; run++){
     if (KFOLD == 1 ){
         struct simNN test;
