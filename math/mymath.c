@@ -27,6 +27,20 @@ mat* arrayToMatrix(float* arr, int row, int col){
     new_matrix->col = col;
     return new_matrix;
 }
+mat* randomMatrix(int row, int col){
+    mat * randomMat = mycreateEmptyMatrix(row, col);
+    int i;
+    int j;
+    for (i = 0 ; i < row; ++i){
+        for(j=0 ; j < col ; j++){
+            randomMat->matrix_t[i][j] = rand()/RAND_MAX;
+            }
+    }
+    randomMat->row = row;
+    randomMat->col = col;
+    return randomMat;
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 mat* mat_mul(mat *A, mat *B){

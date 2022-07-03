@@ -5,7 +5,6 @@ typedef struct node_t
     double *outputweight;
     double bias;
     float z;
-    
     double *dw;
     double dactv;
     double dz;
