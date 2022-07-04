@@ -13,16 +13,12 @@ simNN *create_nn(int input_size, int hidden_layers, int output_size , char* type
     return NN;
 }
 
-void connect(simNN* network){
-}
-
-
 void random_weights(simNN* network){
     int out;
     layer * curr_layer = network->output_layer;
     while(curr_layer != NULL){
         out = curr_layer->neuron_units;
-        curr_layer->prev_layer;
+        curr_layer = curr_layer->prev_layer;
         curr_layer->weights = randomMatrix(curr_layer->neuron_units,out);
     }
 }

@@ -8,7 +8,9 @@
 typedef struct layer_t
 {	int output_numbers; 
 	int neuron_units;
-	neuron ** neurons;
+	mat * activation_function;
+    mat * dactv ;
+	mat* input; 
 	mat * weights;
  	struct layer * next_layer;
 	struct layer * prev_layer;

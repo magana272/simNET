@@ -80,66 +80,57 @@ k_fold(KFOLD);
 
 
 
-// float array[][3] = {{1.f,2.f,3.f},{5.f,6.f,7.f}};
-double array[][1] = {{1.f}};
-mat* new_arr = arrayToMatrix(train_image[0],sizeof(train_image[0])/sizeof(train_image[0]),1);
+double array[][2] = {{11.f,11.f,},{11.f,11.f,}};
+mat* new_arr = arrayToMatrix((double*)array,2,2);
 // mat* relu_arr  = ReLuAct(new_arr, new_arr->row,new_arr->col);
 // printMat(new_arr);
 // printf("\n");
 // printMat(relu_arr);
 printMat(new_arr);
 printf("\n");
+printf("softmax act\n");
 mat* softmax = SoftMaxMAct(new_arr,new_arr->row,new_arr->col);
 printMat(softmax);
+printf("\nfree_new_Arr\n");
 
 free_mat(new_arr);
+printf("col %d\n",softmax->col);
+printf("row %d\n",softmax->row);
+
+printf("free softmax\n");
 free_mat(softmax);
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
-// Initalize NN 
-/////////////////////////////////////////////////////////////////////////////////////////
-struct simNN validing_net[KFOLD];
-double LEARNING_RATE[10] = {.0075,.01, .02, .03, .05,.075,.1 , .2, .5, .6};
-double ERROR[KFOLD];
-int run;
-//  Should maybe use realloc and make this this more dynamic 
-//// but it's fine for now ... just trying to get this to work ! :-)
-
-
+printf("softmax freed\n");
+printf("here\n");
 simNN * mytestNN = create_nn(784, 2, 2, "test");
-printf("NN init");
+printf("NN init\n");
 mytestNN->input_layer = createInPutLayer(784);
-printf("Create_input_layer");
-mytestNN->hidden_layers[0] = createLayer(2, mytestNN->hidden_layers[0]);
-printf("first hidden init");
-
-mytestNN->hidden_layers[1] = createLayer(2, mytestNN->hidden_layers[1]);
+printf("Create_input_layer\n");
+mytestNN->hidden_layers[0] = createLayer(2, mytestNN->input_layer);
+printf("first hidden init\n");
+mytestNN->hidden_layers[1] = createLayer(2, mytestNN->hidden_layers[0]);
+printf("second hidden init\n");
 mytestNN->output_layer = createOutputLayer(2, mytestNN->hidden_layers[1]);
+printf("out init\n");
 random_weights(mytestNN);
 printf("random weights init");
 print_weight(mytestNN);
 
 
-for(run =0 ; run < KFOLD; run++){
-    if (KFOLD == 1 ){
-        struct simNN test;
-        // validation_train_SET[run];
-        // validation_test_SET[run];
-        printf("Let's train on all the data %d\n", run);
-    }
-    else{
-        // struct simNN val_nn = create_nn(); 
+// for(run =0 ; run < KFOLD; run++){
+//     if (KFOLD == 1 ){
+//        simNN test;
+//         // validation_train_SET[run];
+//         // validation_test_SET[run];
+//         printf("Let's train on all the data %d\n", run);
+//     }
+//     else{
+//         // struct simNN val_nn = create_nn(); 
 
-        int train_fold[SIZE - (SIZE/KFOLD)];
-        int validation_fold[SIZE/KFOLD];
-        printf("run: %d\n", run);
-        printf("Need to implement splitting \n");
-    }
-}
+//         int train_fold[SIZE - (SIZE/KFOLD)];
+//         int validation_fold[SIZE/KFOLD];
+//         printf("run: %d\n", run);
+//         printf("Need to implement splitting \n");
+//     }
+// }
 return(0);
 }

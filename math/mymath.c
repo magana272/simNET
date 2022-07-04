@@ -124,6 +124,12 @@ void printMat(mat *A){
 void free_mat(mat* A){
     int i;
     double** m = A->matrix_t;
+    if( A->row == 1){
+        free(m);
+        free(A);
+        return;
+
+    }
     for(i=1;i< A->row; i++){
     free(m[i-1]);}
     free(m);
