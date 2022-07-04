@@ -1,13 +1,21 @@
 #pragma once 
 #include <stdio.h>
-typedef struct node_t
-{   int *activation_function;
-    double *outputweight;
-    double bias;
-    float z;
-    double *dw;
-    double dactv;
-    double dz;
-}neuron;
+#include <stdlib.h>
+#include "../math/mymath.h"
+#include "../opt_cost_fitness/activations.h"
 
-//  update  w <-  w - dW; 
+typedef struct node_t
+{   mat *activation_function;
+    mat *outputweight;
+    double bias;
+    double z;
+    double h;
+    mat * input; //some input vector
+
+    double *dw;
+    mat * dactv;
+
+} neuron;
+
+neuron * createNeuron(int inputNumber);
+

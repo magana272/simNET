@@ -1,6 +1,6 @@
 #include "lossfunction.h"
 
-float CrossEntropyLoss(int true_label[], mat * prediction , int BatchSize){ 
+double CrossEntropyLoss(int true_label[], mat * prediction , int BatchSize){ 
     // The predictions are probs... 
     double loss = 0.f; 
     int i;
@@ -10,6 +10,6 @@ float CrossEntropyLoss(int true_label[], mat * prediction , int BatchSize){
     return loss;
 }
 
-float dCrossEntropyz(float z){
+double dCrossEntropyz(double z){
     return -1/z;
 }

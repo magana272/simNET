@@ -3,5 +3,5 @@
 #include <stdlib.h>
 #include "../math/mymath.h"
 #include <math.h>
-float CrossEntropyLoss(int true_label[], mat* prediction, int BatchSize);
-float dCrossEntropyz(float z);
+double CrossEntropyLoss(int true_label[], mat* prediction, int BatchSize);
+double dCrossEntropyz(double z);

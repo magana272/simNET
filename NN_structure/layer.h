@@ -1,14 +1,20 @@
 #pragma once
+#include <stdio.h>
+#include <stdlib.h>	
+#include "layer.h"
 #include "node.h"
+#include "../math/mymath.h"
+#include "../opt_cost_fitness/activations.h"
 typedef struct layer_t
 {	int output_numbers; 
-	int hidden_unit;
-	neuron * neuron;
+	int neuron_units;
+	neuron ** neurons;
 	mat * weights;
-
+ 	struct layer * next_layer;
+	struct layer * prev_layer;
 } layer;
 
-random_weights(int input, int output){
-	
 
-}
+layer * createLayer(int units, layer * prev);
+layer * createLayer(int units, layer * prev);
+

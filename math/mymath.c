@@ -1,12 +1,12 @@
 #include "mymath.h"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 mat* mycreateEmptyMatrix(int row, int col){
-	float **m;
+	double **m;
     int i;
     mat* new_mat;
     new_mat = (mat *) malloc(sizeof(mat));
-	m = (float**)malloc(row * sizeof(float*));
-	m[0] = (float*)calloc(row * col, sizeof(float));
+	m = (double**)malloc(row * sizeof(double*));
+	m[0] = (double*)calloc(row * col, sizeof(double));
 	for (i = 1; i < row; ++i){
 		m[i] = m[i-1] + col;}
     new_mat->col = col;
@@ -14,7 +14,7 @@ mat* mycreateEmptyMatrix(int row, int col){
     new_mat->matrix_t = m;
 	return new_mat;
 }
-mat* arrayToMatrix(float* arr, int row, int col){
+mat* arrayToMatrix(double* arr, int row, int col){
     int i;
     int j;
     mat* new_matrix = mycreateEmptyMatrix(row, col);
@@ -38,7 +38,7 @@ mat* randomMatrix(int row, int col){
     }
     randomMat->row = row;
     randomMat->col = col;
-    return randomMat;
+return randomMat;
 
 }
 
@@ -56,7 +56,7 @@ mat* mat_mul(mat *A, mat *B){
         int col ; 
         for(i=0 ; i< A->row; i++){
             for(j = 0; j< B->col; j++){
-                float entry = 0.0;
+                double entry = 0.0;
                 for(k=0 ; k<B->col; k++ ){
                     entry += (A->matrix_t[i][k]) * (B->matrix_t[k][j]);
                     new_mat->matrix_t[i][j] = entry;
@@ -113,7 +113,7 @@ mat* mat_sub(mat *A, mat *B){
 void printMat(mat *A){
     int i;
     int j;
-    float ** matrix =  A->matrix_t;
+    double ** matrix =  A->matrix_t;
     for(i=0; i< A->row ; i++){
         printf("[");
         for (j= 0; j<  A->col; j++){   
@@ -123,7 +123,7 @@ void printMat(mat *A){
 }
 void free_mat(mat* A){
     int i;
-    float** m = A->matrix_t;
+    double** m = A->matrix_t;
     for(i=1;i< A->row; i++){
     free(m[i-1]);}
     free(m);

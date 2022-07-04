@@ -81,8 +81,8 @@ k_fold(KFOLD);
 
 
 // float array[][3] = {{1.f,2.f,3.f},{5.f,6.f,7.f}};
-float array[][1] = {{1.f}};
-mat* new_arr = arrayToMatrix((float*)&array,sizeof(array)/sizeof(array[0]),1);
+double array[][1] = {{1.f}};
+mat* new_arr = arrayToMatrix(train_image[0],sizeof(train_image[0])/sizeof(train_image[0]),1);
 // mat* relu_arr  = ReLuAct(new_arr, new_arr->row,new_arr->col);
 // printMat(new_arr);
 // printf("\n");
@@ -104,11 +104,20 @@ free_mat(softmax);
 // Initalize NN 
 /////////////////////////////////////////////////////////////////////////////////////////
 struct simNN validing_net[KFOLD];
-float LEARNING_RATE[10] = {.0075,.01, .02, .03, .05,.075,.1 , .2, .5, .6};
+double LEARNING_RATE[10] = {.0075,.01, .02, .03, .05,.075,.1 , .2, .5, .6};
 double ERROR[KFOLD];
 int run;
+//  Should maybe use realloc and make this this more dynamic 
+//// but it's fine for now ... just trying to get this to work ! :-)
 
-simNN * mytestNN = create_nn(784, 8, 10);
+
+simNN * mytestNN = create_nn(784, 2, 10, "test");
+mytestNN->input_layer = createInputLayer(784);
+mytestNN->hidden_layers[0] = createLayer(10, mytestNN->hidden_layers[0]);
+mytestNN->hidden_layers[1] = createLayer(10, mytestNN->hidden_layers[1]);
+mytestNN->output_layer = createOutputLayer(10, mytestNN->hidden_layers[1]);
+random_weights(mytestNN);
+
 
 for(run =0 ; run < KFOLD; run++){
     if (KFOLD == 1 ){
