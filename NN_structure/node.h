@@ -18,4 +18,7 @@ typedef struct node_t
 } neuron;
 
 neuron * createNeuron(int inputNumber);
+neuron * createOutPutNeuron(int inputNumber);
+neuron * createInputNeuron();
+
 

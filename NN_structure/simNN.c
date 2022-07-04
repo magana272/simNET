@@ -23,6 +23,16 @@ void random_weights(simNN* network){
     while(curr_layer != NULL){
         out = curr_layer->neuron_units;
         curr_layer->prev_layer;
-        curr_layer->weights = randomMatrix(curr_layer->neurons,out);
+        curr_layer->weights = randomMatrix(curr_layer->neuron_units,out);
+    }
+}
+
+void print_weight(simNN* network){
+    int out;
+    layer * curr_layer = network->output_layer;
+    while(curr_layer != NULL){
+        out = curr_layer->neuron_units;
+        curr_layer->prev_layer;
+        printMat(curr_layer->weights);
     }
 }

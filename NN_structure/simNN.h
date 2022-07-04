@@ -19,3 +19,4 @@ void random_weights(simNN *network);
 void forward_pass(simNN net);
 
 void backward_pass(simNN net);
+void print_weight(simNN* network);

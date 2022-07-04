@@ -16,5 +16,6 @@ typedef struct layer_t
 
 
 layer * createLayer(int units, layer * prev);
-layer * createLayer(int units, layer * prev);
+layer * createInPutLayer(int units);
+layer * createOutputLayer(int units, layer * prev);
 

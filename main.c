@@ -111,12 +111,18 @@ int run;
 //// but it's fine for now ... just trying to get this to work ! :-)
 
 
-simNN * mytestNN = create_nn(784, 2, 10, "test");
-mytestNN->input_layer = createInputLayer(784);
-mytestNN->hidden_layers[0] = createLayer(10, mytestNN->hidden_layers[0]);
-mytestNN->hidden_layers[1] = createLayer(10, mytestNN->hidden_layers[1]);
-mytestNN->output_layer = createOutputLayer(10, mytestNN->hidden_layers[1]);
+simNN * mytestNN = create_nn(784, 2, 2, "test");
+printf("NN init");
+mytestNN->input_layer = createInPutLayer(784);
+printf("Create_input_layer");
+mytestNN->hidden_layers[0] = createLayer(2, mytestNN->hidden_layers[0]);
+printf("first hidden init");
+
+mytestNN->hidden_layers[1] = createLayer(2, mytestNN->hidden_layers[1]);
+mytestNN->output_layer = createOutputLayer(2, mytestNN->hidden_layers[1]);
 random_weights(mytestNN);
+printf("random weights init");
+print_weight(mytestNN);
 
 
 for(run =0 ; run < KFOLD; run++){
