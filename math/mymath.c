@@ -33,7 +33,7 @@ mat* randomMatrix(int row, int col){
     int j;
     for (i = 0 ; i < row; ++i){
         for(j=0 ; j < col ; j++){
-            randomMat->matrix_t[i][j] = rand()/RAND_MAX;
+            randomMat->matrix_t[i][j] = (double)rand()/RAND_MAX;
             }
     }
     randomMat->row = row;

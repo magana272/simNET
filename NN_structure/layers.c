@@ -1,10 +1,7 @@
 #include "layer.h"
 layer * createLayer(int units, layer * prev){
-    int size  = units;
     layer* new_layer  = malloc(sizeof(layer));
-    mat* outputWeights;
-    mat * input;
-	// new_layer->neurons =  malloc(sizeof(neuron)* units);
+    new_layer->neuron_units = units;
 	new_layer->prev_layer = prev;
     new_layer->next_layer = NULL;
     return new_layer;

@@ -112,8 +112,10 @@ printf("second hidden init\n");
 mytestNN->output_layer = createOutputLayer(2, mytestNN->hidden_layers[1]);
 printf("out init\n");
 random_weights(mytestNN);
-printf("random weights init");
+printf("random weights init\n");
 print_weight(mytestNN);
+printf("help\n");
+printf("help\n");
 
 
 // for(run =0 ; run < KFOLD; run++){
