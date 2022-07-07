@@ -101,7 +101,7 @@ printf("free softmax\n");
 free_mat(softmax);
 printf("softmax freed\n");
 printf("here\n");
-simNN * mytestNN = create_nn(784, 2, 2, "test");
+simNN * mytestNN = create_nn(784, 2, 10, "test");
 printf("NN init\n");
 mytestNN->input_layer = createInPutLayer(784);
 printf("Create_input_layer\n");
@@ -109,14 +109,13 @@ mytestNN->hidden_layers[0] = createLayer(2, mytestNN->input_layer);
 printf("first hidden init\n");
 mytestNN->hidden_layers[1] = createLayer(2, mytestNN->hidden_layers[0]);
 printf("second hidden init\n");
-mytestNN->output_layer = createOutputLayer(2, mytestNN->hidden_layers[1]);
+mytestNN->output_layer = createOutputLayer(10, mytestNN->hidden_layers[1]);
 printf("out init\n");
 random_weights(mytestNN);
 printf("random weights init\n");
 print_weight(mytestNN);
 printf("help\n");
 printf("help\n");
-
 
 // for(run =0 ; run < KFOLD; run++){
 //     if (KFOLD == 1 ){

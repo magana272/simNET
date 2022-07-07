@@ -38,6 +38,7 @@ mat* SoftMaxMAct(mat* input, int row, int col){
         for(j=0 ;j<col; j++){
             softmaxed->matrix_t[i][j] = pow(EulerNumber,matrix[i][j]);
             summed[i]+=softmaxed->matrix_t[i][j];
+            printf("%d\n", summed[i]);
         }
     }
     for(i=0 ; i<row; i++){
