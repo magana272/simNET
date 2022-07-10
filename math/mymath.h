@@ -21,3 +21,4 @@ mat* mat_inverse(mat *A);
 void printMat(mat *A);
 void free_mat(mat* A);
 mat* randomMatrix(int row, int col);
+mat* matTranspose(mat * mat);

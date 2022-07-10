@@ -5,7 +5,7 @@ mat* ReLuAct(mat* input, int row, int col){
     mat* relu = mycreateEmptyMatrix(row, col);
     for (row_index=0; row_index < row; row_index++){
         for(col_index = 0; col_index < col; col_index++){
-            double relu_ij = (((input->matrix_t[row_index][col_index])>(0.f))?(input->matrix_t[row_index][col_index]):(0.f));
+            double relu_ij = (((input->matrix_t[row_index][col_index])>=(0.f))?(input->matrix_t[row_index][col_index]):(0.f));
             relu->matrix_t[row_index][col_index] = relu_ij;
         }
         }
@@ -21,7 +21,7 @@ mat* dtReLuAct(mat* input, int row, int col){
     mat* relu = mycreateEmptyMatrix(row, col);
     for (row_index=0; row_index < row; row_index++){
         for(col_index = 0; col_index < col; col_index++){
-            double relu_ij = (((input->matrix_t[row_index][col_index])>(0.f))?(1.0f):(0.f));
+            double relu_ij = (((input->matrix_t[row_index][col_index])>=(0.f))?(1.0f):(0.f));
             relu->matrix_t[row_index][col_index] = relu_ij;
         }}
     return relu;
@@ -38,7 +38,6 @@ mat* SoftMaxMAct(mat* input, int row, int col){
         for(j=0 ;j<col; j++){
             softmaxed->matrix_t[i][j] = pow(EulerNumber,matrix[i][j]);
             summed[i]+=softmaxed->matrix_t[i][j];
-            printf("%d\n", summed[i]);
         }
     }
     for(i=0 ; i<row; i++){

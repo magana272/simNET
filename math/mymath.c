@@ -33,13 +33,24 @@ mat* randomMatrix(int row, int col){
     int j;
     for (i = 0 ; i < row; ++i){
         for(j=0 ; j < col ; j++){
-            randomMat->matrix_t[i][j] = (double)rand()/RAND_MAX;
+            randomMat->matrix_t[i][j] = ((double)rand()  -  (0x7fffffff)/2.00)/ RAND_MAX;
             }
     }
     randomMat->row = row;
     randomMat->col = col;
 return randomMat;
 
+}
+mat* matTranspose(mat * matrix){
+    mat * tranMat = mycreateEmptyMatrix(matrix->col, matrix->row);
+    for(int i = 0 ; i< matrix->row; i++ ){
+        for(int j = 0;  j < matrix->col; j++){
+            tranMat->matrix_t[j][i] = matrix->matrix_t[i][j];
+        }
+    }
+    tranMat->col = matrix->row;
+    tranMat->row = matrix->col;
+    return tranMat;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,9 +83,6 @@ mat* mat_add(mat *A, mat *B){
     int i;
     int j;
     if(A->col != B->col && A->row != B->row){
-        printf("\ncol:\n");
-        printf("%d", A->col);
-        printf("%d",B->col);
         printf("Mismatching dim");
         exit(1);
     }

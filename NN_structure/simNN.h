@@ -15,8 +15,6 @@ int * lossfunction;
 
 simNN *create_nn(int input_size, int hidden_layers, int output_size, char * typeNN);
 void random_weights(simNN *network);
-
-void forward_pass(simNN net);
-
-void backward_pass(simNN net);
+mat* forwardPass(simNN *net, mat* input, mat* label);
+mat* backwardPass(simNN* net);
 void print_weight(simNN* network);

@@ -5,11 +5,14 @@
 #include "node.h"
 #include "../math/mymath.h"
 #include "../opt_cost_fitness/activations.h"
+typedef mat *(*Act_funct)(mat * matrix, int row, int col);
+typedef mat *(*dAct_funct)(mat * matrix, int row, int col);
 typedef struct layer_t
 {	int output_numbers; 
 	int neuron_units;
-	mat * activation_function;
-    mat * dactv ;
+	Act_funct  activation_function;
+    dAct_funct dactv;
+	mat* cahedDact;
 	mat* input; 
 	mat * weights;
  	struct layer * next_layer;
@@ -17,6 +20,7 @@ typedef struct layer_t
 } layer;
 
 
+layer * createHiddenLayer(int units, layer * prev);
 layer * createLayer(int units, layer * prev);
 layer * createInPutLayer(int units);
 layer * createOutputLayer(int units, layer * prev);
